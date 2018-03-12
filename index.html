@@ -5,10 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>HANGMAN</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" href="assets/css/style.css">
-	<script scr="assets/javascript/game.js"></script>
 </head>
 <body>
 	<div class="page-header text-center">
@@ -16,16 +16,17 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-6">
-				<img class="center-block pull-right" src="assets/images/placeholder.jpg" alt="">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4">
+				<img class="center-block" src="assets/images/hangman9.jpg" alt="">
+				<p class="text-center">Attempts Left: 9</p>
 			</div>
-			<div class="col-sm-3" id="game-text">
+			<div class="col-sm-4" id="game-text">
 				<ul class="list-unstyled text-center">
 					<li>Current Word:</li>
-					<li>_ _ _ _ _ _</li>
+					<li id="board">_ _ _ _ _ _</li>
 					<li>Letters Guessed:</li>
 					<li>F, U, Y</li>
-					<li>
 				</ul>
 				<table class="text-center">
 					<tr>
@@ -37,9 +38,9 @@
 						<td>0</td>
 					</tr>
 				</table>
-					</li>
 			</div>
 		</div>
 	</div>
+	<script src="assets/javascript/game.js"></script>
 </body>
 </html>

@@ -1,9 +1,19 @@
+img {
+	width: 100%;
+}
+
 table {
 	margin: 0px auto;
 }
 
 td {
 	padding: 0  10px;
+}
+
+p {
+	font-size: 24px;
+	clear: both;
+	margin-top: 10px;
 }
 
 #game-text {
