@@ -4,43 +4,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>HANGMAN</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
-	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<div class="page-header text-center">
-		<h1>HANGMAN<small>by mhgerov</small></h1>
-	</div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-4">
-				<img class="center-block" src="assets/images/hangman9.jpg" alt="">
-				<p class="text-center">Attempts Left: 9</p>
-			</div>
-			<div class="col-sm-4" id="game-text">
-				<ul class="list-unstyled text-center">
-					<li>Current Word:</li>
-					<li id="board">_ _ _ _ _ _</li>
-					<li>Letters Guessed:</li>
-					<li>F, U, Y</li>
-				</ul>
-				<table class="text-center">
-					<tr>
-						<td>Wins:</td>
-						<td>Losses:</td>
-					</tr>
-					<tr>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+	<h1>HANGMAN<small>by mhgerov</small></h1>
+	<img src="" alt=""id="hangman">
+	<p class="text-center">Attempts Left: 9</p>
+	<ul>
+		<li>Current Word:</li>
+		<li id="board">_ _ _ _ _ _</li>
+		<li>Letters Guessed:</li>
+		<li id="lettersGuessed">None</li>
+		<li>Input:<div id="input"><div></li>
+	</ul>
+	<table>
+		<tr>
+			<td>Wins:</td>
+			<td>Losses:</td>
+		</tr>
+		<tr>
+			<td id="wins">0</td>
+			<td id="losses">0</td>
+		</tr>
+	</table>
 	<script src="assets/javascript/game.js"></script>
 </body>
 </html>
