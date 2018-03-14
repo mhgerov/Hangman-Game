@@ -1,40 +1,120 @@
-//Declare variables
-var mysteryWordList = ["Chameleon","Badger","Porcupine","Platypus"]
-var mysteryWord;
-var wins, losses = 0;
-var lettersGuessed = [];
-var numTries = 9;
-var input = "";
+//HTML Pointer variables
+var msg = document.getElementById("msg");
+var attemptsLeft = document.getElementById("attemptsLeft");
+var board = document.getElementById("board");
+var guessedDisp = document.getElementById("lettersGuessed");
+var winDisp = document.getElementById("winDisp");
+var lossDisp = document.getElementById("lossDisp");
 
-document.addEventListener('keydown', function(event) {
-	document.getElementById("input").innerHTML = event.key;
-});
+//Declare variables
+var mysteryWordList = ["DETHKLOK","MASTADON"]; //ALL CAPS ONLY
+var mysteryWord, numTries, wins = 0, losses = 0;
+var lettersGuessed = [];
+var gameState; //reset->>on->over->reset
+
+winDisp.textContent = wins;
+lossDisp.textContent = losses;
 
 //main loop
-init();
+reset();
 
-//function declarations
-function init() {
-	mysteryWord = mysteryWordList[Math.floor(Math.random()*mysteryWordList.length)];
-	document.getElementById("board").innerHTML = hideWord(mysteryWord);
-	document.getElementById("lettersGuessed").innerHTML = "None";
-	numTries = 9;
-	setImg(9);
-	input = "";
-	document.getElementById("input").innerHTML = input;
-}
-
-// "Word" returns "_ _ _ _"
-function hideWord(word) {
-	var hidden = "";
-	for (var i=0;i<word.length-1;i++) {
-		hidden+="_ "
+document.onkeydown = function(evt) {
+	if (evt.key == 'Enter' && gameState == 'reset') {
+		init();
 	}
-	hidden+="_";
-	return hidden;
+	else if (validEntry(evt.key) && gameState == 'on') {
+		update(evt.key.toUpperCase());
+	}
+	else if (evt.key == ' ' && gameState == 'over') {
+		reset();
+	}
 }
 
-function setImg(num) {
-	document.getElementById("hangman").src="assets/images/hangman"+num+".jpg";
+//Game functions
+function reset() {
+	gameState = 'reset';
+	msg.textContent = "Press Enter to begin!"
+	attemptsLeft.textContent = "";
+	board.innerHTML ="&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;";
+	guessedDisp.textContent = "";
+}
+
+function init() {
+	//change game state
+	gameState = 'on';
+
+	//reset variables
+	numTries = 9;
+	mysteryWord = mysteryWordList[Math.floor(Math.random()*mysteryWordList.length)];
+	lettersGuessed = [];
+
+	//updateHTML
+	msg.textContent = " ";
+	attemptsLeft.textContent = numTries;
+	board.textContent = updateBoard(mysteryWord, lettersGuessed);
+}
+
+function update(letter) {
+	//Check if letter right or wrong
+	var correct = false;
+	for (var i=0;i<mysteryWord.length;i++) {
+		if (letter == mysteryWord[i]) {
+			correct = true;
+		}
+	}
+	//update letters guessed var and display
+	lettersGuessed.push(letter);	
+	var gString = "";
+	for (var i=0;i<lettersGuessed.length;i++) {
+		gString+=lettersGuessed[i]+", ";
+	}
+	guessedDisp.textContent = gString;
+	//Update board/attempts
+	if (correct) {
+		board.textContent = updateBoard(mysteryWord, lettersGuessed);
+	}
+	else {
+		numTries-=1;
+		attemptsLeft.textContent = numTries;
+	}
+	//Check for game loss
+	if (numTries<1) {
+		gameLose();
+	}
+}
+
+function gameLose() {
+	gameState = 'over';
+	msg.textContent = "You play bad, and you should feel bad!";
+}
+
+//Helper functions
+function updateBoard(word, lettersGuessed) {
+    var output = "";
+    for (var i=0;i<word.length;i++) {
+        if (lettersGuessed.indexOf(word[i])<0) {
+            output+="_ ";
+        }
+        else {
+            output+=word[i]+" ";
+        }
+    }
+    output = output.slice(0,output.length-1);
+    return output;
+}
+
+function validEntry(letter) {
+	if (letter>='a' && letter<='z') {
+		letter = letter.toUpperCase();
+		for (var i=0;i<lettersGuessed.length;i++) {
+			if (letter == lettersGuessed[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
