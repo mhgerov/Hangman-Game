@@ -81,11 +81,32 @@ function update(letter) {
 	if (numTries<1) {
 		gameLose();
 	}
+	//Check for game win
+	var win = true;
+	var i=0;
+	while (i<board.textContent.length && win==true) {
+		if (board.textContent[i]=='_') {
+			win = false;
+		}
+		i++;
+	}
+	if (win) {
+		gameWin();
+	}
 }
 
 function gameLose() {
 	gameState = 'over';
-	msg.textContent = "You play bad, and you should feel bad!";
+	msg.innerHTML = "You play bad, and you should feel bad!<br/>Press Space to reset";
+	losses+=1;
+	lossDisp.textContent = losses;
+}
+
+function gameWin() {
+	gameState = 'over';
+	msg.innerHTML = "Rock on!<br/>Press Space to reset";
+	wins+=1;
+	winDisp.textContent = wins;
 }
 
 //Helper functions
