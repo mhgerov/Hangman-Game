@@ -8,10 +8,11 @@ var lossDisp = document.getElementById("lossDisp");
 var img = document.getElementById("mainImg");
 
 //Declare variables
-var mysteryWordList = ["DETHKLOK","MASTADON"]; //ALL CAPS ONLY
+var mysteryWordList = ["DETHKLOK","BEHEMOTH"]; //ALL CAPS ONLY
 var mysteryWord, numTries, wins = 0, losses = 0;
 var lettersGuessed = [];
 var gameState; //reset->>on->over->reset
+var song = new Audio();
 
 winDisp.textContent = wins;
 lossDisp.textContent = losses;
@@ -39,7 +40,7 @@ function reset() {
 	board.innerHTML ="&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;";
 	guessedDisp.textContent = "";
 	img.src = "assets/images/splash.jpg";
-
+	song.pause();
 }
 
 function init() {
@@ -112,6 +113,18 @@ function gameWin() {
 	msg.innerHTML = "Rock on!<br/>Press Space to reset";
 	wins+=1;
 	winDisp.textContent = wins;
+	switch (mysteryWord) {
+		case ('DETHKLOK'):
+			song.src = ('assets/sound/dethklok.mp3');
+			song.play();
+			img.src = 'assets/images/dethklok.jpg';
+			break;
+		case ('BEHEMOTH'):
+			song.src = ('assets/sound/behemoth.mp3');
+			song.play();
+			img.src = 'assets/images/behemoth.jpg';
+			break;
+	} 
 }
 
 //Helper functions
