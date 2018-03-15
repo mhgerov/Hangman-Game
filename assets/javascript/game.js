@@ -5,6 +5,7 @@ var board = document.getElementById("board");
 var guessedDisp = document.getElementById("lettersGuessed");
 var winDisp = document.getElementById("winDisp");
 var lossDisp = document.getElementById("lossDisp");
+var img = document.getElementById("mainImg");
 
 //Declare variables
 var mysteryWordList = ["DETHKLOK","MASTADON"]; //ALL CAPS ONLY
@@ -37,6 +38,8 @@ function reset() {
 	attemptsLeft.textContent = "";
 	board.innerHTML ="&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;&#9830;";
 	guessedDisp.textContent = "";
+	img.src = "assets/images/splash.jpg";
+
 }
 
 function init() {
@@ -52,6 +55,7 @@ function init() {
 	msg.textContent = " ";
 	attemptsLeft.textContent = numTries;
 	board.textContent = updateBoard(mysteryWord, lettersGuessed);
+	img.src = "assets/images/hangman9.jpg";
 }
 
 function update(letter) {
@@ -76,6 +80,7 @@ function update(letter) {
 	else {
 		numTries-=1;
 		attemptsLeft.textContent = numTries;
+		img.src = "assets/images/hangman"+numTries+".jpg";
 	}
 	//Check for game loss
 	if (numTries<1) {
