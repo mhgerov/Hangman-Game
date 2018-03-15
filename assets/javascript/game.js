@@ -8,7 +8,7 @@ var lossDisp = document.getElementById("lossDisp");
 var img = document.getElementById("mainImg");
 
 //Declare variables
-var mysteryWordList = ["DETHKLOK","BEHEMOTH"]; //ALL CAPS ONLY
+var mysteryWordList = ["DETHKLOK","BEHEMOTH","MASTODON"]; //ALL CAPS ONLY
 var mysteryWord, numTries, wins = 0, losses = 0;
 var lettersGuessed = [];
 var gameState; //reset->>on->over->reset
@@ -123,6 +123,11 @@ function gameWin() {
 			song.src = ('assets/sound/behemoth.mp3');
 			song.play();
 			img.src = 'assets/images/behemoth.jpg';
+			break;
+		case ('MASTODON'):
+			song.src = ('assets/sound/mastodon.mp3');
+			song.play();
+			img.src = 'assets/images/mastodon.jpg';
 			break;
 	} 
 }
