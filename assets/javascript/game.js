@@ -102,7 +102,7 @@ function update(letter) {
 
 function gameLose() {
 	gameState = 'over';
-	msg.innerHTML = "You play bad, and you should feel bad!<br/>Press Space to reset";
+	msg.innerHTML = "You lose!<br/>Press Space to reset";
 	losses+=1;
 	lossDisp.textContent = losses;
 }
